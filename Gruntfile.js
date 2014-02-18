@@ -1,66 +1,56 @@
 module.exports = function (grunt) {
     grunt.initConfig({
-        connect: {
-            server: { /* Подзадача */
-                options: {
-                    livereload: true,
-                    port: 8000, /* номер порта */
-                    base: 'public' /* публичная директория */
-                }
-            },
-        }, /* grunt-contrib-connect */
-        fest: {
-            templates: { /* Подзадача */
-                files: [{
-                    expand: true,
-                    cwd: 'templates', /* исходная директория */
-                    src: '*.xml', /* имена шаблонов */
-                    dest: 'public/js/tmpl' /* результирующая директория */
-                }],
-                options: {
-                    template: function (data) { /* формат функции-шаблона */
-                        return grunt.template.process(
-                            /* присваиваем функцию-шаблон переменной */
-                            'var <%= name %>Tmpl = <%= contents %> ;',
-                            {data: data}
-                        );
-                    }
-        
-                }
-            } 
-        },
-        concat: {
-            options: {
-                separator: ';'
-            },
-            dist: {
-                src: ['public/js/**/*.js'],
-                dest: 'public/built.js'
-            }
-        },
         watch: {
             fest: {
-                files: ['templates/*.xml'], /* следим за шаблонами */
-                tasks: ['concat', 'fest'], /* перекомпилировать */
+                files: ['templates/*.xml'],
+                tasks: ['fest'],
                 options: {
-                    atBegin: true, /* запустить задачу при старте */
+                    atBegin: true
                 }
             },
             server: {
                 files: [
-                    'public/js/**/*.js', /* следим за статикой */
+                    'public/js/**/*.js',
                     'public/css/**/*.css'
                 ],
                 options: {
                     interrupt: true,
-                    livereload: true /* перезагрузить страницу */
+                    livereload: true
+                }
+            }
+        },
+        connect: {
+            server: {
+                options: {
+                    livereload: true,
+                    port: 8000,
+                    base: 'public'
+                }
+            }
+        },
+        fest: {
+            templates: {
+                files: [{
+                    expand: true,
+                    cwd: 'templates',
+                    src: '*.xml',
+                    dest: 'public/js/tmpl'
+                }],
+                options: {
+                    template: function (data) {
+                        return grunt.template.process(
+                            'define(function () { return <%= contents %> ; });',
+                            {data: data}
+                        );
+                    }
                 }
             }
         }
     });
+    grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-connect');
     grunt.loadNpmTasks('grunt-fest');
-    grunt.loadNpmTasks('grunt-contrib-watch');
-    grunt.loadNpmTasks('grunt-contrib-concat');
-    grunt.registerTask('default', ['concat', 'connect', 'watch']);
+
+    grunt.registerTask('default', ['connect', 'watch']);
+
 };
