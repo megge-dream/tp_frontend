@@ -1,0 +1,13 @@
+<fest:template xmlns:fest="http://fest.mail.ru"
+    context_name="json">
+  <body>
+    <div class="content_Top">Mash: love for everyone</div>
+    <div class="content">  
+        <div class="content_Main"> Main </div>
+        <div style="content-button"> 
+            <p><a href="#" class="js-scoreboard">Score Board</a></p>
+            <p><a href="#" class="js-start-game">Start Game</a></p>
+        </div>
+    </div>
+  </body>
+</fest:template>
