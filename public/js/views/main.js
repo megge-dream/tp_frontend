@@ -12,7 +12,7 @@ define([
         template: tmpl,
         el: $("#page"),
         initialize: function () {
-            // TODO
+            console.log("Main View is working");
         },
         render: function () {
             // TODO

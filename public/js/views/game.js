@@ -9,10 +9,10 @@ define([
  
     var View = Backbone.View.extend({
         
-        el: $("#page"),
         template: tmpl,
+        el: $("#page"),
         initialize: function () {
-             
+            console.log("Game View is working");
         },
         render: function () {
             // TODO
