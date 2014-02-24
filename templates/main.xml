@@ -5,8 +5,8 @@
     <div class="content">  
         <div class="content_Main"> Main </div>
         <div style="content-button"> 
-            <p><a href="#" class="js-scoreboard">Score Board</a></p>
-            <p><a href="#" class="js-start-game">Start Game</a></p>
+            <p><a href="/#scoreboard" class="js-scoreboard">Score Board</a></p>
+            <p><a href="/#game" class="js-start-game">Start Game</a></p>
         </div>
     </div>
   </body>

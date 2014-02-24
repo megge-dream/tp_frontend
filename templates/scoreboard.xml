@@ -4,6 +4,28 @@
 	<div class="content_Top">Mash: love for everyone</div>
     <div class="content">  
     	<div class="content_Main">Score</div>
+
+        <table class="table">
+            <tr>
+                <th>№</th>
+                <th>Name</th>
+                <th>Score</th>
+            </tr>
+              <fest:for iterate="json.scoreboard" index="i">
+                <tr>
+                  <td>
+                    <fest:value>i + 1</fest:value>
+                  </td>
+                <td>
+                  <fest:value>json.scoreboard[i].get('name')</fest:value>
+                </td>
+                <td>
+                  <fest:value>json.scoreboard[i].get('score')</fest:value>
+                </td>
+            </tr>
+          </fest:for>
+        </table>
+
         <div class="content-button"> 
           <p><a href="#" class="js-main">Back</a></p>
         </div>

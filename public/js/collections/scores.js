@@ -1,11 +1,25 @@
 define([
-    'backbone'
+    'backbone',
+    'models/score'
 ], function(
-    Backbone
+
+    Backbone,
+    Score
 ){
+    var Scoreboard = Backbone.Collection.extend({
+     model: Score,
 
-    var Collection = Backbone.Collection.extend({
+        comparator: function(score){
+            return -score.get("score");
+        },
+
+     initialize: function() {
+    
+     }
     });
-
-    return new Collection();
+    var scores = new Scoreboard();
+    scores.on("add", function(Score) {
+        console.log("«" + Score.get("name") + "» добавлен");
+    });
+    return scores;
 });
